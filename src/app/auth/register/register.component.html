@@ -1,0 +1,201 @@
+<div class="auth-page">
+
+  <div class="auth-left">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        S
+      </div>
+
+      <span>Shoply</span>
+
+    </div>
+
+
+    <div class="auth-promo">
+
+      <span class="promo-label">
+        JOIN THE COMMUNITY
+      </span>
+
+      <h1>
+        Shopping
+        <br>
+        made
+        <br>
+        <span>simple.</span>
+      </h1>
+
+      <p>
+        Create your account to save favorites,
+        track orders and enjoy a personalized
+        shopping experience.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="auth-right">
+
+    <div class="auth-card">
+
+      <div class="mobile-logo">
+        S
+      </div>
+
+
+      <div class="auth-header">
+
+        <h2>Create your account</h2>
+
+        <p>
+          It only takes a minute to get started
+        </p>
+
+      </div>
+
+
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register()"
+      >
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label>Full name</label>
+
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="John Doe"
+          >
+
+          <small
+            *ngIf="
+              registerForm.get('name')?.touched &&
+              registerForm.get('name')?.invalid
+            "
+          >
+            Please enter your name.
+          </small>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label>Email address</label>
+
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="you@example.com"
+          >
+
+          <small
+            *ngIf="
+              registerForm.get('email')?.touched &&
+              registerForm.get('email')?.invalid
+            "
+          >
+            Please enter a valid email.
+          </small>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label>Password</label>
+
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="At least 6 characters"
+          >
+
+          <small
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.invalid
+            "
+          >
+            Password must contain at least 6 characters.
+          </small>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="form-group">
+
+          <label>Confirm password</label>
+
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Repeat your password"
+          >
+
+        </div>
+
+
+        <div
+          class="error-box"
+          *ngIf="errorMessage"
+        >
+          {{ errorMessage }}
+        </div>
+
+
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loading"
+        >
+
+          {{ loading
+              ? 'Creating account...'
+              : 'Create Account'
+          }}
+
+        </button>
+
+
+      </form>
+
+
+      <p class="signup-text">
+
+        Already have an account?
+
+        <a routerLink="/login">
+          Sign in
+        </a>
+
+      </p>
+
+
+      <a
+        routerLink="/"
+        class="back-home"
+      >
+        ← Back to store
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

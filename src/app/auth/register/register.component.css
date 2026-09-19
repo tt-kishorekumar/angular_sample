@@ -1,0 +1,431 @@
+.auth-page {
+  min-height: 100vh;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  background: #ffffff;
+}
+
+
+/* LEFT */
+
+.auth-left {
+  position: relative;
+
+  padding: 60px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      145deg,
+      #312e81,
+      #4f46e5,
+      #7c3aed
+    );
+}
+
+
+.auth-left::before {
+  content: '';
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  right: -200px;
+  bottom: -200px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.auth-left::after {
+  content: '';
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  left: -100px;
+  top: 40%;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+
+.brand {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 24px;
+
+  font-weight: 800;
+}
+
+
+.brand-icon,
+.mobile-logo {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #4f46e5;
+
+  font-weight: 900;
+}
+
+
+.auth-promo {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 520px;
+
+  margin-bottom: 100px;
+}
+
+
+.promo-label {
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  font-weight: 800;
+
+  opacity: 0.8;
+}
+
+
+.auth-promo h1 {
+  margin: 18px 0;
+
+  font-size: clamp(42px, 5vw, 65px);
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+}
+
+
+.auth-promo h1 span {
+  color: #c4b5fd;
+}
+
+
+.auth-promo p {
+  max-width: 450px;
+
+  color: #ddd6fe;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+
+/* RIGHT */
+
+.auth-right {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+}
+
+
+.auth-card {
+  width: 100%;
+
+  max-width: 430px;
+}
+
+
+.auth-header {
+  margin-bottom: 35px;
+}
+
+
+.auth-header h2 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 34px;
+
+  letter-spacing: -1px;
+}
+
+
+.auth-header p {
+  margin: 0;
+
+  color: #6b7280;
+}
+
+
+.mobile-logo {
+  display: none;
+
+  margin-bottom: 25px;
+}
+
+
+/* FORM */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #374151;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.label-row {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+
+.label-row a {
+  color: #4f46e5;
+
+  font-size: 13px;
+
+  text-decoration: none;
+}
+
+
+.form-group input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 15px 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #111827;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+
+.form-group input:focus {
+  border-color: #4f46e5;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(79, 70, 229, 0.1);
+}
+
+
+.form-group small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #dc2626;
+
+  font-size: 12px;
+}
+
+
+.error-box {
+  margin-bottom: 20px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: #fef2f2;
+
+  color: #dc2626;
+
+  font-size: 13px;
+}
+
+
+.submit-btn {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #4f46e5;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.submit-btn:hover {
+  background: #4338ca;
+
+  transform: translateY(-1px);
+}
+
+
+.submit-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* FOOTER */
+
+.divider {
+  position: relative;
+
+  margin: 30px 0;
+
+  text-align: center;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.divider span {
+  position: relative;
+
+  top: -10px;
+
+  padding: 0 12px;
+
+  background: white;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+.signup-text {
+  text-align: center;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+.signup-text a {
+  color: #4f46e5;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.back-home {
+  display: block;
+
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #6b7280;
+
+  font-size: 13px;
+
+  text-decoration: none;
+}
+
+
+.back-home:hover {
+  color: #4f46e5;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: flex;
+  }
+
+  .auth-right {
+    min-height: 100vh;
+
+    padding: 25px;
+  }
+
+}
