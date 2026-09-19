@@ -1,1 +1,228 @@
-<p>navbar works!</p>
+<header class="site-header">
+
+  <nav class="navbar">
+
+    <div class="navbar-container">
+
+      <!-- Logo -->
+      <a
+        class="logo"
+        routerLink="/"
+        (click)="closeMobileMenu()"
+      >
+        <span class="logo-icon">N</span>
+        <span class="logo-text">NEXORA</span>
+      </a>
+
+
+      <!-- Desktop Navigation -->
+      <div class="desktop-nav">
+
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link"
+        >
+          Home
+        </a>
+
+        <a
+          routerLink="/products"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          Products
+        </a>
+
+      </div>
+
+
+      <!-- Right Side Actions -->
+      <div class="nav-actions">
+
+        <!-- Search -->
+        <button
+          class="icon-button"
+          routerLink="/products"
+          title="Search products"
+          aria-label="Search products"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+
+        <!-- Cart -->
+        <button
+          class="cart-button"
+          routerLink="/cart"
+          title="Shopping cart"
+          aria-label="Shopping cart"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+
+          <span
+            class="cart-badge"
+            *ngIf="cartCount > 0"
+          >
+            {{ cartCount }}
+          </span>
+
+        </button>
+
+
+        <!-- Logged In User -->
+        <div
+          class="user-section"
+          *ngIf="isLoggedIn"
+        >
+
+          <span class="welcome-text">
+            Hi, {{ userName }}
+          </span>
+
+          <button
+            class="logout-button"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+
+        </div>
+
+
+        <!-- Login -->
+        <a
+          *ngIf="!isLoggedIn"
+          routerLink="/login"
+          class="login-button"
+        >
+          Login
+        </a>
+
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="mobile-menu-button"
+          (click)="toggleMobileMenu()"
+          [class.open]="mobileMenuOpen"
+          aria-label="Toggle navigation menu"
+          type="button"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Mobile Navigation -->
+    <div
+      class="mobile-nav"
+      [class.open]="mobileMenuOpen"
+    >
+
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="mobile-nav-link"
+        (click)="closeMobileMenu()"
+      >
+        Home
+      </a>
+
+      <a
+        routerLink="/products"
+        routerLinkActive="active"
+        class="mobile-nav-link"
+        (click)="closeMobileMenu()"
+      >
+        Products
+      </a>
+
+      <a
+        routerLink="/cart"
+        class="mobile-nav-link"
+        (click)="closeMobileMenu()"
+      >
+        Cart
+
+        <span
+          class="mobile-cart-count"
+          *ngIf="cartCount > 0"
+        >
+          {{ cartCount }}
+        </span>
+
+      </a>
+
+
+      <!-- Mobile Login -->
+      <a
+        *ngIf="!isLoggedIn"
+        routerLink="/login"
+        class="mobile-login-button"
+        (click)="closeMobileMenu()"
+      >
+        Login
+      </a>
+
+
+      <!-- Mobile User -->
+      <div
+        class="mobile-user-section"
+        *ngIf="isLoggedIn"
+      >
+
+        <div class="mobile-user-name">
+          Hi, {{ userName }}
+        </div>
+
+        <button
+          class="mobile-logout-button"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+</header>

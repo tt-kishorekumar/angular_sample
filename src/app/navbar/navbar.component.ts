@@ -1,82 +1,122 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
+
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent
+  implements OnInit, OnDestroy {
+
 
   isLoggedIn = false;
+
   userName = '';
 
   cartCount = 0;
 
   mobileMenuOpen = false;
 
+  private cartSubscription?: Subscription;
+
+
   constructor(
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
+
 
   ngOnInit(): void {
 
     this.checkLoginStatus();
 
-    this.updateCartCount();
+    /*
+      IMPORTANT:
+      Cart count now updates LIVE.
+    */
+
+    this.cartSubscription =
+      this.cartService.cartCount$
+        .subscribe(count => {
+
+          this.cartCount = count;
+
+        });
+
 
     window.addEventListener(
       'storage',
-      () => {
-
-        this.checkLoginStatus();
-
-        this.updateCartCount();
-
-      }
+      this.handleStorageEvent
     );
+
   }
 
+
+  /* =========================
+     LOGIN
+     ========================= */
 
   checkLoginStatus(): void {
 
     const user =
-      localStorage.getItem('currentUser');
+      localStorage.getItem(
+        'currentUser'
+      );
 
     if (user) {
 
-      const currentUser =
-        JSON.parse(user);
+      try {
 
-      this.isLoggedIn = true;
+        const currentUser =
+          JSON.parse(user);
 
-      this.userName =
-        currentUser.name || '';
+        this.isLoggedIn = true;
+
+        this.userName =
+          currentUser.name || '';
+
+      } catch {
+
+        this.isLoggedIn = false;
+
+        this.userName = '';
+
+      }
 
     } else {
 
       this.isLoggedIn = false;
 
       this.userName = '';
+
     }
   }
 
 
-  updateCartCount(): void {
+  /* =========================
+     STORAGE
+     ========================= */
 
-    const cart =
-      JSON.parse(
-        localStorage.getItem('cart') || '[]'
-      );
+  handleStorageEvent = (): void => {
 
-    this.cartCount =
-      cart.reduce(
-        (total: number, item: any) =>
-          total + item.quantity,
-        0
-      );
-  }
+    this.checkLoginStatus();
 
+  };
+
+
+  /* =========================
+     LOGOUT
+     ========================= */
 
   logout(): void {
 
@@ -91,18 +131,42 @@ export class NavbarComponent implements OnInit {
     this.mobileMenuOpen = false;
 
     this.router.navigate(['/']);
+
   }
 
+
+  /* =========================
+     MOBILE MENU
+     ========================= */
 
   toggleMobileMenu(): void {
 
     this.mobileMenuOpen =
       !this.mobileMenuOpen;
+
   }
 
 
   closeMobileMenu(): void {
 
     this.mobileMenuOpen = false;
+
   }
+
+
+  /* =========================
+     CLEANUP
+     ========================= */
+
+  ngOnDestroy(): void {
+
+    this.cartSubscription?.unsubscribe();
+
+    window.removeEventListener(
+      'storage',
+      this.handleStorageEvent
+    );
+
+  }
+
 }
