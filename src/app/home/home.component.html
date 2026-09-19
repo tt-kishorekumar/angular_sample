@@ -1,22 +1,25 @@
 <div class="home-page">
 
-  <!-- HERO SECTION -->
-  <section class="hero">
+  <!-- ================================
+       HERO SECTION
+  ================================= -->
+
+  <section class="hero-section">
 
     <div class="hero-content">
 
       <span class="hero-badge">
-        ✨ New Collection 2026
+        ✦ Welcome to NEXORA
       </span>
 
-      <h1>
-        Discover Products
-        <span>You'll Love.</span>
+      <h1 class="hero-title">
+        Everything You Need,
+        <span>All in One Place.</span>
       </h1>
 
-      <p>
-        Shop the latest products, discover amazing deals,
-        and enjoy a simple and beautiful shopping experience.
+      <p class="hero-description">
+        Discover premium electronics, fashion, beauty products,
+        and home essentials carefully selected for modern living.
       </p>
 
       <div class="hero-buttons">
@@ -25,15 +28,14 @@
           routerLink="/products"
           class="primary-btn"
         >
-          Shop Now
-          <span>→</span>
+          Shop Now →
         </a>
 
         <a
-          routerLink="/register"
+          routerLink="/products"
           class="secondary-btn"
         >
-          Create Account
+          Explore Products
         </a>
 
       </div>
@@ -41,113 +43,112 @@
     </div>
 
 
-    <div class="hero-image">
+    <div class="hero-visual">
 
       <div class="hero-circle"></div>
 
-      <div class="floating-card card-one">
-        <span>⭐</span>
-        <div>
-          <strong>4.9/5</strong>
-          <small>Customer Rating</small>
-        </div>
-      </div>
-
-      <div class="floating-card card-two">
-        <span>🚚</span>
-        <div>
-          <strong>Fast Delivery</strong>
-          <small>To your doorstep</small>
-        </div>
-      </div>
-
-      <div class="shopping-bag">
-        🛍️
-      </div>
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+        alt="NEXORA shopping collection"
+      />
 
     </div>
 
   </section>
 
 
-  <!-- FEATURES -->
-  <section class="features">
+  <!-- ================================
+       STATS
+  ================================= -->
 
-    <div class="feature">
+  <section class="stats-section">
 
-      <div class="feature-icon">
-        🚚
-      </div>
+    <div class="stat-card">
 
-      <div>
-        <h3>Fast Delivery</h3>
-        <p>Quick and reliable delivery</p>
-      </div>
+      <span class="stat-number">
+        10K+
+      </span>
 
-    </div>
-
-
-    <div class="feature">
-
-      <div class="feature-icon">
-        🔒
-      </div>
-
-      <div>
-        <h3>Secure Shopping</h3>
-        <p>Your information is protected</p>
-      </div>
+      <span class="stat-label">
+        Happy Customers
+      </span>
 
     </div>
 
 
-    <div class="feature">
+    <div class="stat-card">
 
-      <div class="feature-icon">
-        ↩️
-      </div>
+      <span class="stat-number">
+        500+
+      </span>
 
-      <div>
-        <h3>Easy Returns</h3>
-        <p>Simple and hassle-free returns</p>
-      </div>
+      <span class="stat-label">
+        Products
+      </span>
 
     </div>
 
 
-    <div class="feature">
+    <div class="stat-card">
 
-      <div class="feature-icon">
-        💬
-      </div>
+      <span class="stat-number">
+        50+
+      </span>
 
-      <div>
-        <h3>24/7 Support</h3>
-        <p>We're here whenever you need us</p>
-      </div>
+      <span class="stat-label">
+        Brands
+      </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <span class="stat-number">
+        24/7
+      </span>
+
+      <span class="stat-label">
+        Customer Support
+      </span>
 
     </div>
 
   </section>
 
 
-  <!-- CATEGORIES -->
-  <section class="categories">
+  <!-- ================================
+       CATEGORIES
+  ================================= -->
 
-    <div class="section-heading">
+  <section class="section categories-section">
 
-      <div>
+    <div class="section-header">
+
+      <div class="section-heading">
+
         <span class="section-label">
-          SHOP BY CATEGORY
+          Shop by Category
         </span>
 
-        <h2>
-          Find What You Need
+        <h2 class="section-title">
+          Find What You're Looking For
         </h2>
+
+        <p class="section-description">
+          Explore our carefully organized collections and discover
+          products that fit your lifestyle.
+        </p>
+
       </div>
 
-      <a routerLink="/products">
-        View All →
+
+      <a
+        routerLink="/products"
+        class="view-all"
+      >
+        View All Products →
       </a>
 
     </div>
@@ -155,63 +156,400 @@
 
     <div class="category-grid">
 
-      <a
+      <!-- Electronics -->
+
+      <div
+        class="category-card"
         routerLink="/products"
-        class="category-card electronics"
+        [queryParams]="{ category: 'Electronics' }"
+        tabindex="0"
       >
+
+        <span class="category-number">
+          01
+        </span>
+
         <div class="category-icon">
-          📱
+          ⚡
         </div>
 
-        <h3>Electronics</h3>
+        <h3 class="category-title">
+          Electronics
+        </h3>
 
-        <p>Smart devices & gadgets</p>
+        <p class="category-description">
+          Smart devices, headphones, watches,
+          speakers and modern technology.
+        </p>
 
+        <span class="category-arrow">
+          →
+        </span>
+
+      </div>
+
+
+      <!-- Fashion -->
+
+      <div
+        class="category-card"
+        routerLink="/products"
+        [queryParams]="{ category: 'Fashion' }"
+        tabindex="0"
+      >
+
+        <span class="category-number">
+          02
+        </span>
+
+        <div class="category-icon">
+          ✦
+        </div>
+
+        <h3 class="category-title">
+          Fashion
+        </h3>
+
+        <p class="category-description">
+          Modern clothing, sneakers, backpacks
+          and everyday fashion essentials.
+        </p>
+
+        <span class="category-arrow">
+          →
+        </span>
+
+      </div>
+
+
+      <!-- Beauty -->
+
+      <div
+        class="category-card"
+        routerLink="/products"
+        [queryParams]="{ category: 'Beauty' }"
+        tabindex="0"
+      >
+
+        <span class="category-number">
+          03
+        </span>
+
+        <div class="category-icon">
+          ✿
+        </div>
+
+        <h3 class="category-title">
+          Beauty
+        </h3>
+
+        <p class="category-description">
+          Skincare, fragrances and personal
+          care products for everyday routines.
+        </p>
+
+        <span class="category-arrow">
+          →
+        </span>
+
+      </div>
+
+
+      <!-- Home & Living -->
+
+      <div
+        class="category-card"
+        routerLink="/products"
+        [queryParams]="{ category: 'Home & Living' }"
+        tabindex="0"
+      >
+
+        <span class="category-number">
+          04
+        </span>
+
+        <div class="category-icon">
+          ⌂
+        </div>
+
+        <h3 class="category-title">
+          Home & Living
+        </h3>
+
+        <p class="category-description">
+          Stylish home essentials, lighting,
+          coffee makers and decorative items.
+        </p>
+
+        <span class="category-arrow">
+          →
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       FEATURED PRODUCTS
+  ================================= -->
+
+  <section class="section products-section">
+
+    <div class="section-header">
+
+      <div class="section-heading">
+
+        <span class="section-label">
+          Featured Collection
+        </span>
+
+        <h2 class="section-title">
+          Popular Right Now
+        </h2>
+
+        <p class="section-description">
+          Discover some of our most popular products,
+          selected for quality, style and everyday value.
+        </p>
+
+      </div>
+
+
+      <a
+        routerLink="/products"
+        class="view-all"
+      >
+        See All Products →
       </a>
 
+    </div>
+
+
+    <div class="product-grid">
+
+
+      <!-- Product 1 -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+            alt="Wireless Headphones Pro"
+            loading="lazy"
+          />
+
+        </div>
+
+        <div class="product-info">
+
+          <span class="product-category">
+            Electronics
+          </span>
+
+          <h3 class="product-name">
+            Wireless Headphones Pro
+          </h3>
+
+          <p class="product-description">
+            Premium wireless audio with
+            immersive sound quality.
+          </p>
+
+          <div class="product-price">
+
+            <span class="current-price">
+              ₹2,499
+            </span>
+
+            <span class="old-price">
+              ₹3,999
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- Product 2 -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+            alt="Smart Watch Series X"
+            loading="lazy"
+          />
+
+        </div>
+
+        <div class="product-info">
+
+          <span class="product-category">
+            Electronics
+          </span>
+
+          <h3 class="product-name">
+            Smart Watch Series X
+          </h3>
+
+          <p class="product-description">
+            Stay connected with a stylish
+            smartwatch built for everyday life.
+          </p>
+
+          <div class="product-price">
+
+            <span class="current-price">
+              ₹3,499
+            </span>
+
+            <span class="old-price">
+              ₹4,999
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- Product 3 -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"
+            alt="Urban Sneakers"
+            loading="lazy"
+          />
+
+        </div>
+
+        <div class="product-info">
+
+          <span class="product-category">
+            Fashion
+          </span>
+
+          <h3 class="product-name">
+            Urban Sneakers
+          </h3>
+
+          <p class="product-description">
+            Comfortable everyday sneakers
+            designed for modern style.
+          </p>
+
+          <div class="product-price">
+
+            <span class="current-price">
+              ₹2,199
+            </span>
+
+            <span class="old-price">
+              ₹3,299
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- Product 4 -->
+
+      <article class="product-card">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85"
+            alt="Smart Coffee Maker"
+            loading="lazy"
+          />
+
+        </div>
+
+        <div class="product-info">
+
+          <span class="product-category">
+            Home & Living
+          </span>
+
+          <h3 class="product-name">
+            Smart Coffee Maker
+          </h3>
+
+          <p class="product-description">
+            Enjoy freshly brewed coffee
+            with modern convenience.
+          </p>
+
+          <div class="product-price">
+
+            <span class="current-price">
+              ₹4,299
+            </span>
+
+            <span class="old-price">
+              ₹5,999
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       PROMO BANNER
+  ================================= -->
+
+  <section class="promo-section">
+
+    <div class="promo-banner">
+
+      <div class="promo-content">
+
+        <span class="promo-label">
+          Special Offer
+        </span>
+
+        <h2 class="promo-title">
+          Upgrade Your Everyday.
+        </h2>
+
+        <p class="promo-description">
+          Discover selected products at special prices.
+          Find something you'll love at NEXORA.
+        </p>
+
+      </div>
+
 
       <a
         routerLink="/products"
-        class="category-card fashion"
+        class="promo-button"
       >
-        <div class="category-icon">
-          👕
-        </div>
-
-        <h3>Fashion</h3>
-
-        <p>Style for every occasion</p>
-
-      </a>
-
-
-      <a
-        routerLink="/products"
-        class="category-card beauty"
-      >
-        <div class="category-icon">
-          💄
-        </div>
-
-        <h3>Beauty</h3>
-
-        <p>Look and feel your best</p>
-
-      </a>
-
-
-      <a
-        routerLink="/products"
-        class="category-card home"
-      >
-        <div class="category-icon">
-          🏠
-        </div>
-
-        <h3>Home & Living</h3>
-
-        <p>Make your space beautiful</p>
-
+        Shop Collection →
       </a>
 
     </div>
@@ -219,32 +557,91 @@
   </section>
 
 
-  <!-- CTA -->
-  <section class="cta">
+  <!-- ================================
+       WHY NEXORA
+  ================================= -->
 
-    <div>
+  <section class="section features-section">
 
-      <span>
-        READY TO START?
-      </span>
+    <div class="section-header">
 
-      <h2>
-        Your next favorite product
-        is waiting.
-      </h2>
+      <div class="section-heading">
 
-      <p>
-        Create your account and start shopping today.
-      </p>
+        <span class="section-label">
+          Why NEXORA
+        </span>
+
+        <h2 class="section-title">
+          Shopping Made Simple
+        </h2>
+
+        <p class="section-description">
+          Everything you need for a smooth and enjoyable
+          online shopping experience.
+        </p>
+
+      </div>
 
     </div>
 
-    <a
-      routerLink="/register"
-      class="cta-button"
-    >
-      Get Started →
-    </a>
+
+    <div class="features-grid">
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ✓
+        </div>
+
+        <h3 class="feature-title">
+          Quality Products
+        </h3>
+
+        <p class="feature-description">
+          Carefully selected products from
+          trusted brands and reliable sources.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ⚡
+        </div>
+
+        <h3 class="feature-title">
+          Fast Shopping
+        </h3>
+
+        <p class="feature-description">
+          Find products quickly with powerful
+          search, filters and organized categories.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ♡
+        </div>
+
+        <h3 class="feature-title">
+          Customer First
+        </h3>
+
+        <p class="feature-description">
+          A simple shopping experience designed
+          around your needs and convenience.
+        </p>
+
+      </div>
+
+    </div>
 
   </section>
 

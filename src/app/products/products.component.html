@@ -1,1 +1,433 @@
-<p>products works!</p>
+<div class="products-page">
+
+  <!-- ================================
+       PAGE HEADER
+  ================================= -->
+
+  <section class="products-header">
+
+    <div class="header-content">
+
+      <span class="page-label">
+        NEXORA COLLECTION
+      </span>
+
+      <h1>
+        Discover Products
+      </h1>
+
+      <p>
+        Explore our curated collection of electronics,
+        fashion, beauty and home essentials.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       FILTER AREA
+  ================================= -->
+
+  <section class="products-controls">
+
+    <div class="controls-top">
+
+      <!-- SEARCH -->
+
+      <div class="search-box">
+
+        <span class="search-icon">
+          🔍
+        </span>
+
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          placeholder="Search products..."
+        />
+
+      </div>
+
+
+      <!-- SORT -->
+
+      <div class="sort-box">
+
+        <label for="sort">
+          Sort by
+        </label>
+
+        <select
+          id="sort"
+          [(ngModel)]="selectedSort"
+          (change)="onSortChange()"
+        >
+
+          <option value="featured">
+            Featured
+          </option>
+
+          <option value="newest">
+            Newest
+          </option>
+
+          <option value="price-low">
+            Price: Low to High
+          </option>
+
+          <option value="price-high">
+            Price: High to Low
+          </option>
+
+          <option value="rating">
+            Highest Rated
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="category-section">
+
+      <div class="category-list">
+
+        <button
+          *ngFor="let category of categories"
+          type="button"
+          class="category-btn"
+          [class.active]="
+            selectedCategory === category
+          "
+          (click)="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRICE FILTER -->
+
+    <div class="price-filter">
+
+      <div class="price-filter-header">
+
+        <span>
+          Maximum Price
+        </span>
+
+        <strong>
+          ₹{{ maxPrice | number }}
+        </strong>
+
+      </div>
+
+      <input
+        type="range"
+        min="500"
+        max="100000"
+        step="500"
+        [(ngModel)]="maxPrice"
+        (input)="onPriceChange()"
+      />
+
+    </div>
+
+
+    <!-- RESULTS INFO -->
+
+    <div class="results-row">
+
+      <span>
+        Showing
+        <strong>
+          {{ filteredProducts.length }}
+        </strong>
+        products
+      </span>
+
+      <button
+        type="button"
+        class="clear-btn"
+        (click)="clearFilters()"
+      >
+        Clear Filters
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       PRODUCTS
+  ================================= -->
+
+  <section class="products-section">
+
+    <div
+      class="product-grid"
+      *ngIf="filteredProducts.length > 0"
+    >
+
+      <article
+        class="product-card"
+        *ngFor="let product of filteredProducts"
+      >
+
+        <!-- IMAGE -->
+
+        <div class="product-image">
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+            loading="lazy"
+          />
+
+
+          <!-- BADGE -->
+
+          <span
+            class="product-badge"
+            *ngIf="product.badge"
+          >
+            {{ product.badge }}
+          </span>
+
+
+          <!-- DISCOUNT -->
+
+          <span
+            class="discount-badge"
+            *ngIf="getDiscount(product) > 0"
+          >
+            -{{ getDiscount(product) }}%
+          </span>
+
+
+          <!-- WISHLIST -->
+
+          <button
+            type="button"
+            class="wishlist-btn"
+            [class.active]="
+              isWishlisted(product.id)
+            "
+            (click)="toggleWishlist(product)"
+            [attr.aria-label]="
+              isWishlisted(product.id)
+                ? 'Remove from wishlist'
+                : 'Add to wishlist'
+            "
+          >
+            {{ isWishlisted(product.id) ? '♥' : '♡' }}
+          </button>
+
+        </div>
+
+
+        <!-- PRODUCT INFO -->
+
+        <div class="product-info">
+
+          <span class="product-category">
+            {{ product.category }}
+          </span>
+
+          <h2 class="product-name">
+            {{ product.name }}
+          </h2>
+
+          <p class="product-description">
+            {{ product.description }}
+          </p>
+
+
+          <!-- RATING -->
+
+          <div class="product-rating">
+
+            <span class="stars">
+              ★
+            </span>
+
+            <strong>
+              {{ product.rating }}
+            </strong>
+
+            <span>
+              ({{ product.reviews }})
+            </span>
+
+          </div>
+
+
+          <!-- PRICE -->
+
+          <div class="price-row">
+
+            <div class="price-container">
+
+              <span class="current-price">
+                ₹{{ product.price | number }}
+              </span>
+
+              <span class="old-price">
+                ₹{{ product.oldPrice | number }}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- CART CONTROLS -->
+
+          <div
+            class="cart-controls"
+            *ngIf="
+              getCartQuantity(product.id) > 0
+            "
+          >
+
+            <button
+              type="button"
+              (click)="decreaseQuantity(product)"
+            >
+              −
+            </button>
+
+            <span>
+              {{ getCartQuantity(product.id) }}
+            </span>
+
+            <button
+              type="button"
+              (click)="increaseQuantity(product)"
+            >
+              +
+            </button>
+
+          </div>
+
+
+          <!-- ADD TO CART -->
+
+          <button
+            *ngIf="
+              getCartQuantity(product.id) === 0
+            "
+            type="button"
+            class="add-cart-btn"
+            (click)="addToCart(product)"
+          >
+
+            <span>
+              Add to Cart
+            </span>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+          <!-- ADDED MESSAGE -->
+
+          <div
+            class="added-message"
+            *ngIf="
+              addedProductId === product.id
+            "
+          >
+            ✓ Added to cart
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- ================================
+         EMPTY STATE
+    ================================= -->
+
+    <div
+      class="empty-state"
+      *ngIf="filteredProducts.length === 0"
+    >
+
+      <div class="empty-icon">
+        🔍
+      </div>
+
+      <h2>
+        No Products Found
+      </h2>
+
+      <p>
+        We couldn't find products matching
+        your current filters.
+      </p>
+
+      <button
+        type="button"
+        class="empty-btn"
+        (click)="clearFilters()"
+      >
+        Clear Filters
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       BOTTOM CTA
+  ================================= -->
+
+  <section class="products-cta">
+
+    <div>
+
+      <span class="cta-label">
+        KEEP EXPLORING
+      </span>
+
+      <h2>
+        Find Something You'll Love
+      </h2>
+
+      <p>
+        Browse all of our collections and discover
+        something new for your everyday life.
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      class="cta-btn"
+      (click)="clearFilters()"
+    >
+      View All Products →
+    </button>
+
+  </section>
+
+</div>
